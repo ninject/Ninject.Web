@@ -37,6 +37,7 @@
     <Reference Include="Ninject, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\contrib\Ninject\Ninject.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Ninject.Extensions.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -47,6 +48,9 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="HttpHandlerBase.cs" />
     <Compile Include="KernelContainer.cs" />
     <Compile Include="MasterPageBase.cs">
