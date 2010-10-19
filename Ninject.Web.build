@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="Ninject" default="all">
+	<property name="version" value="2.1.0.0" overwrite="true"/>
+	<property name="product.name" value="Ninject.Web" overwrite="false"/>
+	<property name="product.company" value="Enkari, Ltd." overwrite="false"/>
+	<property name="product.duration" value="2007-2009" overwrite="false"/>
+	<property name="product.description" value="Web extension for Ninject" overwrite="false"/>
+	<property name="product.platforms" value="net-3.5,net-4.0,mono-2.0"  overwrite="false"/>
+	<property name="product.buildserverPlatforms" value="net-3.5,net-4.0,mono-2.0"  overwrite="false"/>
+	<property name="dependencies" value="Ninject"  overwrite="false"/>
+
+	<include buildfile="Ninject.include" />
+	<target name="all" depends="core"/>
+
+	<target name="core" depends="init">
+		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build}/${product.assembly}" doc="${current.path.build}/${product.docfile}" keyfile="${path.src}/${product.keyfile}">
+			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
+			<sources basedir="${path.src}">
+				<include name="${build.asminfo}"/>
+				<include name="${product.name}/**/*.cs"/>
+			</sources>
+			<references>
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="System.Web.dll"/>
+				<include name="System.Web.Services.dll"/>
+				<include name="${path.lib}/Ninject/${build.platform}/Ninject.dll"/>
+			</references>
+		</csc>
+	</target>
+
+	<target name="compile-tests" depends="core" unless="${skip.tests}" if="${not(string::contains(build.platform, 'silverlight') or build.platform == 'netcf-3.5')}" />
+	
+    <target name="compile-silverlight-tests" depends="core" unless="${skip.tests or skip.silverlightTests}" if="${string::contains(build.platform, 'silverlight')}"/>
+</project>

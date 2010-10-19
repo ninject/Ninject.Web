@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Ninject.Web">
+</Property><Property Name="Solution File" Value="C:\Projects\Ninject\ninject.web\src\Ninject.Web\Ninject.Web.sln">
+</Property><Property Name="Date" Value="Dienstag, 19. Oktober 2010">
+</Property><Property Name="Time" Value="02:07:39">
+</Property></Properties><Event ErrorLevel="0" Project="Ninject.Web" Source="Ninject.Web.csproj" Description="Project file successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\Ninject.Web.csproj">
+</Event><Event ErrorLevel="1" Project="Ninject.Web" Source="..\GlobalAssemblyInfo.cs" Description="Backed up project may not build.  Project contains linked file: C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\Properties\GlobalAssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="..\GlobalAssemblyInfo.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\Properties\GlobalAssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="HttpHandlerBase.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\HttpHandlerBase.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="KernelContainer.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\KernelContainer.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="MasterPageBase.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\MasterPageBase.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="NinjectHttpApplication.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\NinjectHttpApplication.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="NinjectHttpModule.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\NinjectHttpModule.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="PageBase.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\PageBase.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="WebServiceBase.cs" Description="File successfully backed up as C:\Projects\Ninject\ninject.web\src\Ninject.Web\Backup\WebServiceBase.cs">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="Ninject.Web.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="Ninject.Web" Source="Ninject.Web.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Ninject.Web" Source="Ninject.Web.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
