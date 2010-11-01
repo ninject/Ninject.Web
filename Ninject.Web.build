@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project name="Ninject" default="all">
+<project name="Ninject" default="build">
 	<property name="version" value="2.1.0.0" overwrite="true"/>
 	<property name="product.name" value="Ninject.Web" overwrite="false"/>
 	<property name="product.company" value="Enkari, Ltd." overwrite="false"/>
