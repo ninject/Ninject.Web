@@ -10,14 +10,10 @@
 
 #endregion
 
-#region Using Directives
-
-using System.Web;
-
-#endregion
-
 namespace Ninject.Web
 {
+    using System.Web;
+
     /// <summary>
     /// A <see cref="HttpApplication"/> that creates a <see cref="IKernel"/> for use throughout
     /// the application.
@@ -25,7 +21,20 @@ namespace Ninject.Web
     public abstract class NinjectHttpApplication : HttpApplication
     {
         #region Lifecycle Event Handlers
+        /// <summary>
+        /// The one per request module to release request scope at the end of the request
+        /// </summary>
+        private readonly OnePerRequestModule onePerRequestModule;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NinjectHttpApplication"/> class.
+        /// </summary>
+        protected NinjectHttpApplication()
+        {
+            this.onePerRequestModule = new OnePerRequestModule();
+            this.onePerRequestModule.Init(this);
+        }
+        
         /// <summary>
         /// Initializes the application.
         /// </summary>
@@ -36,6 +45,11 @@ namespace Ninject.Web
 
             // Request injections for the application itself.
             KernelContainer.Inject( this );
+
+            if (KernelContainer.Kernel.Settings.Get("ReleaseScopeAtRequestEnd", true))
+            {
+                OnePerRequestModule.StartManaging(KernelContainer.Kernel);
+            }
 
             OnApplicationStarted();
         }
