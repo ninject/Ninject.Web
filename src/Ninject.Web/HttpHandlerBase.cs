@@ -1,5 +1,3 @@
-#region License
-
 // 
 // Author: Nate Kohari <nate@enkari.com>
 // Copyright (c) 2007-2010, Enkari, Ltd.
@@ -8,23 +6,15 @@
 // See the file LICENSE.txt for details.
 // 
 
-#endregion
-
-#region Using Directives
-
-using System.Web;
-
-#endregion
-
 namespace Ninject.Web
 {
+    using System.Web;
+
     /// <summary>
     /// A <see cref="IHttpHandler"/> that supports injections.
     /// </summary>
     public abstract class HttpHandlerBase : IHttpHandler
     {
-        #region IHttpHandler Members
-
         /// <summary>
         /// Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler"></see> instance.
         /// </summary>
@@ -36,18 +26,16 @@ namespace Ninject.Web
         /// Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"></see> interface.
         /// </summary>
         /// <param name="context">An <see cref="T:System.Web.HttpContext"></see> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
-        public void ProcessRequest( HttpContext context )
+        public void ProcessRequest(HttpContext context)
         {
-            KernelContainer.Inject( this );
-            DoProcessRequest( context );
+            KernelContainer.Inject(this);
+            this.DoProcessRequest(context);
         }
-
-        #endregion
 
         /// <summary>
         /// Enables processing of HTTP Web requests by a custom HttpHandler that implements the <see cref="T:System.Web.IHttpHandler"></see> interface.
         /// </summary>
         /// <param name="context">An <see cref="T:System.Web.HttpContext"></see> object that provides references to the intrinsic server objects (for example, Request, Response, Session, and Server) used to service HTTP requests.</param>
-        protected abstract void DoProcessRequest( HttpContext context );
+        protected abstract void DoProcessRequest(HttpContext context);
     }
 }

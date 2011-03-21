@@ -1,5 +1,3 @@
-#region License
-
 // 
 // Author: Nate Kohari <nate@enkari.com>
 // Copyright (c) 2007-2010, Enkari, Ltd.
@@ -8,67 +6,58 @@
 // See the file LICENSE.txt for details.
 // 
 
-#endregion
-
-#region Using Directives
-
-using System;
-
-#endregion
-
 namespace Ninject.Web
 {
+    using System;
+    using Ninject.Web.Common;
+
     /// <summary>
     /// A static container for the <see cref="NinjectHttpApplication"/>'s kernel.
     /// </summary>
     internal static class KernelContainer
     {
-        #region Fields
-
-        private static IKernel _kernel;
-
-        #endregion
-
-        #region Properties
+        /// <summary>
+        /// The ninject kernel.
+        /// </summary>
+        private static IKernel kernel;
 
         /// <summary>
         /// Gets or sets the kernel that is used in the application.
         /// </summary>
         public static IKernel Kernel
         {
-            get { return _kernel; }
+            get
+            {
+                return kernel;
+            }
+
             set
             {
-                if ( _kernel != null )
+                if (kernel != null)
                 {
-                    throw new NotSupportedException( "The static container already has a kernel associated with it!" );
+                    throw new NotSupportedException("The static container already has a kernel associated with it!");
                 }
 
-                _kernel = value;
+                kernel = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Injects the specified instance by using the container's kernel.
         /// </summary>
         /// <param name="instance">The instance to inject.</param>
-        public static void Inject( object instance )
+        public static void Inject(object instance)
         {
-            if ( _kernel == null )
+            if (kernel == null)
             {
-                throw new InvalidOperationException( String.Format(
-                    "The type {0} requested an injection, but no kernel has been registered for the web application.\r\n" +
-                    "Please ensure that your project defines a NinjectHttpApplication.",
-                    instance.GetType() ) );
+                throw new InvalidOperationException(
+                    String.Format(
+                        "The type {0} requested an injection, but no kernel has been registered for the web application.\r\n" +
+                        "Please ensure that your project defines a NinjectHttpApplication.",
+                        instance.GetType()));
             }
 
-            _kernel.Inject( instance );
+            kernel.Inject(instance);
         }
-
-        #endregion
     }
 }

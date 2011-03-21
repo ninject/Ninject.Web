@@ -1,5 +1,3 @@
-#region License
-
 // 
 // Author: Nate Kohari <nate@enkari.com>
 // Copyright (c) 2007-2010, Enkari, Ltd.
@@ -8,16 +6,10 @@
 // See the file LICENSE.txt for details.
 // 
 
-#endregion
-
-#region Using Directives
-
-using System.Web.Services;
-
-#endregion
-
 namespace Ninject.Web
 {
+    using System.Web.Services;
+
     /// <summary>
     /// A <see cref="WebService"/> that supports injections.
     /// </summary>
@@ -28,7 +20,7 @@ namespace Ninject.Web
         /// </summary>
         protected WebServiceBase()
         {
-            KernelContainer.Inject( this );
+            KernelContainer.Inject(this);
         }
     }
 }
