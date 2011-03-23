@@ -32,6 +32,6 @@
 	</target>
 
 	<target name="compile-tests" depends="core" unless="${skip.tests}" if="${not(string::contains(build.platform, 'silverlight') or build.platform == 'netcf-3.5')}" />
-	
-    <target name="compile-silverlight-tests" depends="core" unless="${skip.tests or skip.silverlightTests}" if="${string::contains(build.platform, 'silverlight')}"/>
+
+	<target name="compile-silverlight-tests" depends="core" unless="${skip.tests or skip.silverlightTests}" if="${string::contains(build.platform, 'silverlight')}"/>
 </project>
