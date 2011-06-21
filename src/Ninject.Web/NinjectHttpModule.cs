@@ -11,6 +11,8 @@ namespace Ninject.Web
     using System;
     using System.Web;
     using System.Web.UI;
+    using System.Web.UI.WebControls;
+
     using Ninject.Infrastructure.Disposal;
 
     /// <summary>
@@ -43,11 +45,22 @@ namespace Ninject.Web
         /// and inject their dependencies using KernelContainer.
         /// </summary>
         /// <param name="parent">The parent control.</param>
-        private static void InjectUserControls(Control parent)
+        /// <param name="skipDataBoundControls">if set to <c>true</c> special handling of DataBoundControls is skipped.</param>
+        private static void InjectUserControls(Control parent, bool skipDataBoundControls)
         {
             if (parent == null)
             {
                 return;
+            }
+
+            if (skipDataBoundControls)
+            {
+                var dataBoundControl = parent as DataBoundControl;
+                if (dataBoundControl != null)
+                {
+                    dataBoundControl.DataBound += InjectDataBoundControl;
+                    return;
+                }                
             }
 
             foreach (Control control in parent.Controls)
@@ -57,10 +70,25 @@ namespace Ninject.Web
                     KernelContainer.Inject(control);
                 }
 
-                InjectUserControls(control);
+                InjectUserControls(control, skipDataBoundControls);
             }
         }
-        
+
+        /// <summary>
+        /// Injects a data bound control.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private static void InjectDataBoundControl(object sender, EventArgs e)
+        {
+            var dataBoundControl = sender as DataBoundControl;
+            if (dataBoundControl != null)
+            {
+                dataBoundControl.DataBound -= InjectDataBoundControl;
+                InjectUserControls(dataBoundControl, false);
+            }
+        }
+
         /// <summary>
         /// Injects dependencies into web pages and subscribes to their InitComplete
         /// Event to inject usercontrols with their dependencies.
@@ -77,7 +105,7 @@ namespace Ninject.Web
             }
 
             KernelContainer.Inject(page);
-            page.InitComplete += (src, args) => InjectUserControls(page);
+            page.PreLoad += (src, args) => InjectUserControls(page, false);
         }
     }
 }
