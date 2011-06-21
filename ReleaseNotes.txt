@@ -1,0 +1,4 @@
+Version 2.4.0.0
+---------------
+- Added: App_Start/NinjectWeb.cs to NuGet package that registers the NinjectHttpModule
+- Changed: Injection of DataBoundControls is delayed to the DataBound event to fix a problem with dynamic data
