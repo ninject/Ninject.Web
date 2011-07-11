@@ -22,14 +22,24 @@ using System.Web.UI.WebControls;
 
 namespace Ninject.Web
 {
+    /// <summary>
+    /// A <see cref="WebControl"/> that supports injections.
+    /// </summary>
     public class WebControlBase : WebControl
     {
+        /// <summary>
+        /// Raises the <see cref="E:System.Web.UI.WebControls.WebControl.Init"></see> event to initialize the page.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs"></see> that contains the event data.</param>
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
             RequestActivation();
         }
 
+        /// <summary>
+        /// Asks the kernel to inject this instance.
+        /// </summary>
         protected virtual void RequestActivation()
         {
             KernelContainer.Inject(this);
