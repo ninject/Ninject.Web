@@ -6,6 +6,5 @@ using System.Security;
 [assembly: Guid("2dafe407-a883-46fb-b13d-3263716ca817")]
 
 #if !NO_PARTIAL_TRUST
-
 [assembly: AllowPartiallyTrustedCallers]
 #endif
