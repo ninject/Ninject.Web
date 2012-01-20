@@ -2,11 +2,11 @@
 <project name="Ninject" default="build">
 	<property name="version" value="2.2.0.0" overwrite="true"/>
 	<property name="product.name" value="Ninject.Web" overwrite="false"/>
-	<property name="product.company" value="Enkari, Ltd." overwrite="false"/>
-	<property name="product.duration" value="2007-2011" overwrite="false"/>
+	<property name="product.company" value="Ninject Project Contributors" overwrite="false"/>
+	<property name="product.duration" value="2007-2012" overwrite="false"/>
 	<property name="product.description" value="Web extension for Ninject" overwrite="false"/>
-	<property name="product.platforms" value="net-3.5,net-4.0,net-4.5,mono-2.0"  overwrite="false"/>
-	<property name="product.buildserverPlatforms" value="net-3.5,net-4.0,mono-2.0"  overwrite="false"/>
+	<property name="product.platforms" value="net-3.5,net-4.0,net-4.5,mono-2.0,mono-3.5,mono-4.0"  overwrite="false"/>
+	<property name="product.buildserverPlatforms" value="net-3.5,net-4.0,mono-2.0,mono-3.5,mono-4.0"  overwrite="false"/>
 	<property name="dependencies" value="Ninject,Ninject.Web.Common"  overwrite="false"/>
 
 	<include buildfile="Ninject.include" />
@@ -14,7 +14,7 @@
 	<target name="nuget-all" depends="nuget"/>
 
 	<target name="core" depends="init">
-		<csc noconfig="true" nostdlib="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build}/${product.assembly}" doc="${current.path.build}/${product.docfile}" keyfile="${path.src}/${product.keyfile}">
+		<csc noconfig="true" warnaserror="true" target="library" debug="${build.debug}" optimize="${build.optimize}" define="${build.defines}" output="${current.path.build}/${product.assembly}" doc="${current.path.build}/${product.docfile}" keyfile="${path.src}/${product.keyfile}">
 			<arg line="/filealign:512" unless="${nant.settings.currentframework == 'mono-2.0'}"/>
 			<sources basedir="${path.src}">
 				<include name="${build.asminfo}"/>
