@@ -1,4 +1,4 @@
-﻿[assembly: WebActivator.PreApplicationStartMethod(typeof($rootnamespace$.App_Start.NinjectWeb), "Start")]
+﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof($rootnamespace$.App_Start.NinjectWeb), "Start")]
 
 namespace $rootnamespace$.App_Start
 {
