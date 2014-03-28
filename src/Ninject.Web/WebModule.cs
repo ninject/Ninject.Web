@@ -19,24 +19,20 @@
 
 namespace Ninject.Web
 {
-    using System.Web;
     using Ninject.Modules;
     using Ninject.Web.Common;
 
     /// <summary>
     /// The mvc nodule
     /// </summary>
-    public class WebModule : GlobalKernelRegistrationModule<OnePerRequestHttpModule>
+    public class WebModule : NinjectModule
     {
         /// <summary>
         /// Loads the module into the kernel.
         /// </summary>
         public override void Load()
         {
-            base.Load();
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebHttpApplicationPlugin>();
-
-            this.Bind<HttpContext>().ToMethod(ctx => HttpContext.Current).InTransientScope();
         }
     }
 }
