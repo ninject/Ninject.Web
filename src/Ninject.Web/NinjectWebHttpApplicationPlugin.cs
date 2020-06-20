@@ -1,13 +1,15 @@
-//-------------------------------------------------------------------------------
-// <copyright file="NinjectWebHttpApplicationPlugin.cs" company="bbv Software Services AG">
-//   Copyright (c) 2011 bbv Software Services AG
-//   Author: Remo Gloor (remo.gloor@gmail.com)
+// -------------------------------------------------------------------------------------------------
+// <copyright file="NinjectWebHttpApplicationPlugin.cs" company="Ninject Project Contributors">
+//   Copyright (c) 2007-2010, Enkari, Ltd.
+//   Copyright (c) 2011-2020 Ninject Project Contributors. All rights reserved.
 //
-//   Licensed under the Apache License, Version 2.0 (the "License");
-//   you may not use this file except in compliance with the License.
+//   Dual-licensed under the Apache License, Version 2.0, and the Microsoft Public License (Ms-PL).
+//   You may not use this file except in compliance with one of the Licenses.
 //   You may obtain a copy of the License at
 //
 //       http://www.apache.org/licenses/LICENSE-2.0
+//   or
+//       http://www.microsoft.com/opensource/licenses.mspx
 //
 //   Unless required by applicable law or agreed to in writing, software
 //   distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,22 +17,23 @@
 //   See the License for the specific language governing permissions and
 //   limitations under the License.
 // </copyright>
-//-------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 namespace Ninject.Web
 {
     using System.Web;
+
     using Ninject.Activation;
     using Ninject.Components;
     using Ninject.Web.Common;
 
     /// <summary>
-    /// The web plugin implementation for MVC
+    /// The web plugin implementation for ASP.NET application.
     /// </summary>
     public class NinjectWebHttpApplicationPlugin : NinjectComponent, INinjectHttpApplicationPlugin
     {
         /// <summary>
-        /// The kernel
+        /// The kernel.
         /// </summary>
         private readonly IKernel kernel;
 
@@ -52,7 +55,7 @@ namespace Ninject.Web
         {
             return HttpContext.Current;
         }
-        
+
         /// <summary>
         /// Starts this instance.
         /// </summary>
