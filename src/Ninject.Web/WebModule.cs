@@ -21,6 +21,8 @@
 
 namespace Ninject.Web
 {
+    using System.Web;
+
     using Ninject.Modules;
     using Ninject.Web.Common;
 
@@ -35,6 +37,7 @@ namespace Ninject.Web
         public override void Load()
         {
             this.Kernel.Components.Add<INinjectHttpApplicationPlugin, NinjectWebHttpApplicationPlugin>();
+            this.Kernel.Bind<IHttpModule>().To<NinjectHttpModule>();
         }
     }
 }

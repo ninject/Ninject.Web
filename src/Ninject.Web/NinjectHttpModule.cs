@@ -54,12 +54,12 @@ namespace Ninject.Web
         }
 
         /// <summary>
-        /// Search for usercontrols within the parent control
+        /// Search for UserControls and WebControls within the parent control
         /// and inject their dependencies using KernelContainer.
         /// </summary>
         /// <param name="parent">The parent control.</param>
         /// <param name="skipDataBoundControls">if set to <c>true</c> special handling of DataBoundControls is skipped.</param>
-        private static void InjectUserControls(Control parent, bool skipDataBoundControls)
+        private static void InjectControls(Control parent, bool skipDataBoundControls)
         {
             if (parent == null)
             {
@@ -68,8 +68,7 @@ namespace Ninject.Web
 
             if (skipDataBoundControls)
             {
-                var dataBoundControl = parent as DataBoundControl;
-                if (dataBoundControl != null)
+                if (parent is DataBoundControl dataBoundControl)
                 {
                     dataBoundControl.DataBound += InjectDataBoundControl;
                     return;
@@ -78,12 +77,20 @@ namespace Ninject.Web
 
             foreach (Control control in parent.Controls)
             {
-                if (control is UserControl)
+                if (!(control is MasterPageBase) && control is MasterPage)
+                {
+                    KernelContainer.Inject(control);
+                }
+                else if (!(control is UserControlBase) && control is UserControl)
+                {
+                    KernelContainer.Inject(control);
+                }
+                else if (!(control is WebControlBase) && control is WebControl)
                 {
                     KernelContainer.Inject(control);
                 }
 
-                InjectUserControls(control, skipDataBoundControls);
+                InjectControls(control, skipDataBoundControls);
             }
         }
 
@@ -98,7 +105,7 @@ namespace Ninject.Web
             if (dataBoundControl != null)
             {
                 dataBoundControl.DataBound -= InjectDataBoundControl;
-                InjectUserControls(dataBoundControl, false);
+                InjectControls(dataBoundControl, true);
             }
         }
 
@@ -110,15 +117,25 @@ namespace Ninject.Web
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnPreRequestHandlerExecute(object sender, EventArgs e)
         {
-            var page = this.httpApplication.Context.CurrentHandler as Page;
-
-            if (page == null)
+            if (this.httpApplication.Context.CurrentHandler is PageBase)
             {
                 return;
             }
 
-            KernelContainer.Inject(page);
-            page.PreLoad += (src, args) => InjectUserControls(page, false);
+            if (this.httpApplication.Context.CurrentHandler is HttpHandlerBase)
+            {
+                return;
+            }
+
+            if (this.httpApplication.Context.CurrentHandler is Page page)
+            {
+                KernelContainer.Inject(page);
+                page.PreLoad += (src, args) => InjectControls(page, false);
+            }
+            else if (this.httpApplication.Context.CurrentHandler is IHttpHandler handler)
+            {
+                KernelContainer.Inject(handler);
+            }
         }
     }
 }
