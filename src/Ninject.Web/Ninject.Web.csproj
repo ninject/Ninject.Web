@@ -22,8 +22,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/ninject/Ninject.Web</RepositoryUrl>
-    <Title>Ninject ASP.NET Framework</Title>
-    <Description>ASP.NET application bootstrapper for Ninject</Description>
+    <Title>Ninject ASP.NET Web Forms Framework</Title>
+    <Description>ASP.NET web forms application bootstrapper for Ninject</Description>
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
 

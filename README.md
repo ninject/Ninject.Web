@@ -4,4 +4,4 @@
 [![NuGet Version](http://img.shields.io/nuget/v/Ninject.Web.svg?style=flat)](https://www.nuget.org/packages/Ninject.Web/) 
 [![NuGet Downloads](http://img.shields.io/nuget/dt/Ninject.Web.svg?style=flat)](https://www.nuget.org/packages/Ninject.Web/)
 
-ASP.NET application bootstrapper for Ninject
+ASP.NET web forms application bootstrapper for Ninject.
