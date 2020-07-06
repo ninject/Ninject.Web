@@ -39,7 +39,9 @@
 
   <ItemGroup>
     <PackageReference Include="Ninject" Version="3.3.4" />
-    <PackageReference Include="Ninject.Web.Common.WebHost" Version="3.3.2" />
+    <PackageReference Include="Ninject.Web.Common.WebHost" Version="3.3.2">
+      <ExcludeAssets>contentFiles</ExcludeAssets>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
